@@ -1,0 +1,57 @@
+// scss- 변수
+// 반복적으로 사용되거나 관리하고 싶은 값을 변수로 저장할 수 있다.
+// 변수 이름 앞에는 항상 $를 붙인다.
+
+$header-height: 60px;
+$section-padding-top: 8px;
+
+.detailSection {
+  position: absolute; //안전하게 사용하기 위해 main tag에 position:relative 추가하자
+  left: 0;
+  bottom: 0;
+  z-index: 101;
+  border: solid red 2px;
+
+  width: 100%;
+  height: 100%;
+
+  padding: $section-padding-top 16px 16px;
+  background-color: white;
+
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0 -2px 8px 0 rgba(136, 136, 136, 0.3);
+
+  transform: translateY(
+    calc(100% - #{$header-height} - #{$section-padding-top})
+  );
+  // 🐔
+
+  border: dotted red 2px;
+}
+
+.header {
+  height: $header-height;
+
+  display: flex;
+  flex-direction: column;
+
+  .arrowButton {
+    height: 20px;
+    align-self: center; //🐔
+
+    border: none;
+    background-color: transparent;
+  }
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed; //🐔
+  }
+
+  .title {
+    margin: 4px 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
