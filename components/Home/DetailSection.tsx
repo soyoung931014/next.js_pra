@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
 import styles from '../../styles/detail.module.scss';
 import { CURRENT_STORE_KEY } from '@/hooks/useCurrentStore';
@@ -7,19 +7,21 @@ import { Store } from '@/types/store';
 
 const DetailSection = () => {
   const { data: currentStore } = useSWR<Store>(CURRENT_STORE_KEY);
+  const [expand, setExpanded] = useState(false);
 
   console.log(currentStore);
   return (
     <div className={styles.detailSection}>
       <div className={styles.header}>
-        <button className={styles.arrowButton} disabled>
+        <button
+          className={styles.arrowButton}
+          onClick={() => setExpanded(!expand)}
+          disabled={!currentStore}
+        >
           <IoIosArrowUp size={20} color="#666666" />
         </button>
-        {!currentStore ? (
-          <p className={styles.title}>매장을 선택해주세요</p>
-        ) : (
-          '매장임ㅆ음'
-        )}
+        {!currentStore && <p className={styles.title}>매장을 선택해주세요</p>}
+        {currentStore && <p className={styles.title}>{currentStore.name}</p>}
       </div>
     </div>
   );

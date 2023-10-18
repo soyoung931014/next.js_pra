@@ -4,13 +4,12 @@
 
 $header-height: 60px;
 $section-padding-top: 8px;
-
+$detail-zindex: 101;
 .detailSection {
   position: absolute; //안전하게 사용하기 위해 main tag에 position:relative 추가하자
   left: 0;
   bottom: 0;
-  z-index: 101;
-  border: solid red 2px;
+  z-index: $detail-zindex;
 
   width: 100%;
   height: 100%;
@@ -25,7 +24,7 @@ $section-padding-top: 8px;
   transform: translateY(
     calc(100% - #{$header-height} - #{$section-padding-top})
   );
-  // 🐔
+  // 🐔 translateY를 이용해 전체 모달을 적당히 내려준다.
 
   border: dotted red 2px;
 }
@@ -42,11 +41,10 @@ $section-padding-top: 8px;
 
     border: none;
     background-color: transparent;
-  }
-
-  &:disabled {
-    opacity: 0.2;
-    cursor: not-allowed; //🐔
+    &:disabled {
+      opacity: 0.2;
+      cursor: not-allowed; //🐔
+    }
   }
 
   .title {
